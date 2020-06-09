@@ -13,6 +13,8 @@ APPNAME = build/openGLdemo
 EXT = .cpp
 SRCDIR = src
 OBJDIR = obj
+DEPDIR = obj
+BLDDIR = build
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
@@ -34,17 +36,20 @@ all: $(APPNAME)
 
 # Builds the app
 $(APPNAME): $(OBJ)
+	@mkdir -p $(BLDDIR)
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Creates the dependecy rules
 %.d: $(SRCDIR)/%$(EXT)
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
+	@mkdir -p $(DEPDIR)
+	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$(DEPDIR)/$@
 
 # Includes all .h files
 -include $(DEP)
 
 # Building rule for .o files and its .c/.cpp in combination with all .h
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
+	@mkdir -p $(OBJDIR)
 	$(CC) $(CXXFLAGS) -o $@ -c $<
 
 ################### Cleaning rules for Unix-based OS ###################
