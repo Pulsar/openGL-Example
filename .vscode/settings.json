@@ -3,7 +3,7 @@
     "commands": [
       {
         "match": ".*",
-        "cmd": "kill %1 && make && ./build/openGLdemo &",
+        "cmd": "kill %1 || true && make && ./build/openGLdemo &",
         "useShortcut": false,
         "silent": false
       },
