@@ -1,6 +1,6 @@
 # Readme
 
-## Setup
+## Requirements
 
 ```bash
 sudo apt-get install freeglut3-dev
@@ -11,6 +11,7 @@ sudo apt-get install freeglut3 freeglut3-dev libglew-dev
 apt-get install mesa-utils
 ```
 
+## Compile
 
 ```bash
 # Debian
