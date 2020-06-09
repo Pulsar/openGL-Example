@@ -1,0 +1,18 @@
+{
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": ".*",
+        "cmd": "kill %1 && make && ./build/openGLdemo &",
+        "useShortcut": false,
+        "silent": false
+      },
+      {
+        "match": "\\.txt$",
+        "cmd": "echo 'I am a .txt file ${file}.'",
+        "useShortcut": false,
+        "silent": false
+      }
+    ]
+  }
+}
