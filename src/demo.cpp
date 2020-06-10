@@ -34,7 +34,6 @@ void display() {
 
   // rectangleGrid(0,0);
   Grid grid;
-  srand(time(NULL));
   bool** array = randomGrid(10,10);
   for (int j = 0; j < grid.height; j++) {
     for (int i = 0; i < grid.width; i++){
