@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024px, initial-scale=1.0">
+  <title>10x10 Matrix</title>
+</head>
+<style>
+  body {
+    margin: 0px;
+  }
+
+  canvas {
+    border: 5px solid grey;
+  }
+</style>
+<body>
+  <canvas id="drawBoard" width="900" height="900"></canvas>
+</body>
+<script>
+  var c = document.getElementById("drawBoard");
+  var ctx = c.getContext("2d");
+
+
+  position = { x:  0, y:  0 };
+  size     = { w: 90, h: 90 };
+  
+
+  let width  = 10;
+  let height = 10;
+
+  let map =randomMap(width, height);
+  console.log(map);
+  
+  drawMap(ctx, size, map);
+
+
+  function randomMap(width, height) {
+
+    let array2D = [];
+    for (let x = 0; x < width; x++) {
+      let array = [];
+      for (let y = 0; y < width; y++) {
+        array.push(Math.random() >= 0.5);
+      }
+      array2D.push(array);
+    }
+
+    return array2D;
+  }
+
+  function drawMap(ctx, size, map) {
+
+    for (let   x = 0; x < map.length; x++) {
+      for (let y = 0; y < map[x].length; y++) {
+        if (map[x][y]) {
+          console.log(map[x][y], x, y);
+          
+          drawSquare(ctx, {"x": x*size.w, "y": y*size.w}, size);
+        }
+      }
+    }
+
+  }
+  
+  function drawSquare(drawingBoard, position, size) {
+    console.log(position);
+    
+    drawingBoard.fillRect(position.x, position.y, size.w, size.h);
+    
+  }
+
+</script>
+</html>
