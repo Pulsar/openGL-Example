@@ -14,8 +14,19 @@
 
 void setup() {   glClearColor(0.4f, 0.4f, 0.4f, 1.0f); }
 
-void grid(unsigned int width=10, unsigned int height=10) {
+bool** randomGrid(unsigned int width=10, unsigned int height=10) {
+  srand(time(NULL));
+  bool** array = 0;
+  array = new bool*[width];
 
+  for (unsigned int w = 0; w < width; w++){
+    array[w] = new bool[width];
+    for (unsigned int h = 0; h < height; h++) {
+      array[w][h] = rand() % 2;
+    }  
+  }
+
+  return array;
 }
 
 void display() {
@@ -24,9 +35,10 @@ void display() {
   // rectangleGrid(0,0);
   Grid grid;
   srand(time(NULL));
+  bool** array = randomGrid(10,10);
   for (int j = 0; j < grid.height; j++) {
     for (int i = 0; i < grid.width; i++){
-      grid.rectangleGrid(float(i),float(j), rand() % 2);
+      grid.rectangleGrid(float(i),float(j), array[i][j]);
     }  
   }
   glutSwapBuffers();
